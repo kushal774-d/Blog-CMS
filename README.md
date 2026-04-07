@@ -1,4 +1,4 @@
-# Nexus CMS (MSSQL Edition)
+# Blog CMS (MSSQL Edition)
 
 A modern, fast, and beautiful Content Management System (CMS) platform built with Python (Flask) and connected to Microsoft SQL Server (MSSQL), featuring a dark-themed glassmorphism UI using HTML and Vanilla CSS.
 
