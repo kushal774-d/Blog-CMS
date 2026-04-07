@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post['title'] }} - Blog CMS{% endblock %}
+
+{% block content %}
+<article class="glass-panel single-post">
+    <h1>{{ post['title'] }}</h1>
+    <div class="meta">{{ post['created_at'] }}</div>
+    {% if post.get('image_path') %}
+    <img src="{{ url_for('static', filename=post['image_path']) }}" alt="Cover Image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;">
+    {% endif %}
+    <div class="content">{{ post['content'] }}</div>
+</article>
+<div style="margin-top: 2rem;">
+    <a href="{{ url_for('index') }}" class="btn">← Back to Home</a>
+</div>
+{% endblock %}

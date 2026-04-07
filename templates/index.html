@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Blog CMS{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Latest Articles</h1>
+
+<div class="posts-grid">
+    {% for post in posts %}
+    <a href="{{ url_for('post', post_id=post['id']) }}" class="glass-panel post-card">
+        {% if post.get('image_path') %}
+        <img src="{{ url_for('static', filename=post['image_path']) }}" alt="Cover Image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+        {% endif %}
+        <h2>{{ post['title'] }}</h2>
+        <p>{{ post['content'][:150] }}...</p>
+        <div class="post-date">{{ post['created_at'] }}</div>
+    </a>
+    {% else %}
+    <div class="glass-panel" style="grid-column: 1 / -1; text-align: center;">
+        <p>No posts available. Checkout the <a href="{{ url_for('admin') }}" style="color:var(--primary-color)">Admin Dashboard</a> to add some!</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

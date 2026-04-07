@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern CMS platform built with Python and Flask.">
+    <title>{% block title %}Blog CMS{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('index') }}" class="logo">Blog CMS</a>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if session.get('role') == 'admin' %}
+                <a href="{{ url_for('admin') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}" style="color: var(--danger-color);">Logout</a>
+            {% elif session.get('role') == 'writer' %}
+                <a href="{{ url_for('writer') }}">Writer Dashboard</a>
+                <a href="{{ url_for('logout') }}" style="color: var(--danger-color);">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login_writer') }}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
